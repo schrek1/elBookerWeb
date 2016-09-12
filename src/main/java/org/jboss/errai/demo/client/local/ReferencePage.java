@@ -5,8 +5,8 @@ import org.jboss.errai.ui.nav.client.local.DefaultPage;
 import org.jboss.errai.ui.nav.client.local.Page;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
 
-@Page(role = DefaultPage.class)
-@Templated("ReferencePage#content")
+@Page
+@Templated("ReferencePage.html#content")
 public class ReferencePage extends Composite{
 
 }
