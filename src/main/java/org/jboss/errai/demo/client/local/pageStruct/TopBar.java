@@ -7,6 +7,7 @@ import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.inject.Inject;
 import org.jboss.errai.demo.client.local.ContactPage;
@@ -25,8 +26,6 @@ public class TopBar extends Composite{
 
   @Inject
   private Navigation nav;
-
-
 
   @Inject
   @DataField
@@ -49,22 +48,31 @@ public class TopBar extends Composite{
     History.addValueChangeHandler(new ValueChangeHandler<String>(){
       @Override
       public void onValueChange(ValueChangeEvent<String> event){
-        TemplateWidget tw = (TemplateWidget)TopBar.this.getWidget();
-        if(TopBar.this.nav.getCurrentPage() != null){
-          for(Widget widget : tw){
-            if(widget instanceof TransitionAnchor){
-              TransitionAnchor ta = (TransitionAnchor)widget;
-              Element parent = ta.getElement().getParentElement();
-              if(ta.toPageType().getSimpleName().equals(TopBar.this.nav.getCurrentPage().name())){
-                parent.addClassName("active");
-              }else{
-                parent.removeClassName("active");
-              }
-            }
+        setActiveNavButton();
+      }
+    });
+  }
+
+  @PostConstruct
+  public void init(){
+    setActiveNavButton();
+  }
+
+  public void setActiveNavButton(){
+    TemplateWidget tw = (TemplateWidget)TopBar.this.getWidget();
+    if(TopBar.this.nav.getCurrentPage() != null){
+      for(Widget widget : tw){
+        if(widget instanceof TransitionAnchor){
+          TransitionAnchor ta = (TransitionAnchor)widget;
+          Element parent = ta.getElement().getParentElement();
+          if(ta.toPageType().getSimpleName().equals(TopBar.this.nav.getCurrentPage().name())){
+            parent.addClassName("active");
+          }else{
+            parent.removeClassName("active");
           }
         }
       }
-    });
+    }
   }
 
 }
