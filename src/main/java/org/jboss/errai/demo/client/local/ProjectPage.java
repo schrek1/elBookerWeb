@@ -1,18 +1,18 @@
 package org.jboss.errai.demo.client.local;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
-import javax.inject.Inject;
+import javax.annotation.PostConstruct;
 import org.jboss.errai.ui.nav.client.local.DefaultPage;
 import org.jboss.errai.ui.nav.client.local.Page;
-import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
 
-@Page(role = DefaultPage.class)
-@Templated("HomePage.html#content")
-public class HomePage extends Composite{
+@Page
+@Templated("ProjectPage.html#wrapper")
+public class ProjectPage extends Composite{
 
-  @DataField
-  @Inject
-  private WorksTable portfolio;
-
+  @PostConstruct
+  public void init(){
+    Window.scrollTo(0, 0);
+  }
 }

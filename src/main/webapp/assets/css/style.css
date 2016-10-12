@@ -201,6 +201,7 @@ a:focus {
 
 .mt {
   margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 .hline {
@@ -503,7 +504,6 @@ csmall2 {
   border:none;
   overflow: hidden;
   border-radius: 0px;
-  //border-color:#000000;
 }
 
 .siteLink {
